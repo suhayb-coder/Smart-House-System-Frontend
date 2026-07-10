@@ -439,7 +439,7 @@
     async function loadTenantRequests() {
         if (user && user.role === 'TENANT') {
             try {
-                const response = await fetch(`http://localhost:8080/api/rental-requests/tenant/${user.id}`);
+                const response = await fetch(`https://smart-house-system-backend.onrender.com/api/rental-requests/tenant/${user.id}`);
                 if (response.ok) {
                     tenantRequests = await response.json();
                 }
@@ -452,7 +452,7 @@
     async function loadProperties() {
         await loadTenantRequests();
         try {
-            const response = await fetch('http://localhost:8080/api/properties');
+            const response = await fetch('https://smart-house-system-backend.onrender.com/api/properties');
             if (response.ok) {
                 const properties = await response.json();
                 renderProperties(properties);
@@ -531,7 +531,7 @@
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/rental-requests', {
+            const response = await fetch('https://smart-house-system-backend.onrender.com/api/rental-requests', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

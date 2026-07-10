@@ -817,7 +817,7 @@
       async function loadTenantDashboard() {
         try {
           const response = await fetch(
-            `http://localhost:8080/api/rental-requests/tenant/${user.id}`,
+            `https://smart-house-system-backend.onrender.com/api/rental-requests/tenant/${user.id}`,
           );
           if (response.ok) {
             const requests = await response.json();
@@ -843,7 +843,7 @@
         try {
           // Fetch landlord contact details
           const contactRes = await fetch(
-            `http://localhost:8080/api/rental-requests/property/${request.propertyId}/tenant/${user.id}/contact`,
+            `https://smart-house-system-backend.onrender.com/api/rental-requests/property/${request.propertyId}/tenant/${user.id}/contact`,
           );
           if (contactRes.ok) {
             const landlord = await contactRes.json();

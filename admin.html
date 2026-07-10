@@ -1262,13 +1262,13 @@
         try {
           // Load metrics
           const tenantsRes = await fetch(
-            "http://localhost:8080/api/admin/tenants",
+            "https://smart-house-system-backend.onrender.com/api/admin/tenants",
           );
           const landlordsRes = await fetch(
-            "http://localhost:8080/api/admin/landlords",
+            "https://smart-house-system-backend.onrender.com/api/admin/landlords",
           );
           const propertiesRes = await fetch(
-            "http://localhost:8080/api/admin/properties",
+            "https://smart-house-system-backend.onrender.com/api/admin/properties",
           );
 
           if (tenantsRes.ok && landlordsRes.ok && propertiesRes.ok) {
@@ -1306,7 +1306,7 @@
       // --- Tab 1: Verification Queue ---
       async function loadVerificationQueue() {
         try {
-          const res = await fetch("http://localhost:8080/api/admin/properties");
+          const res = await fetch("https://smart-house-system-backend.onrender.com/api/admin/properties");
           if (!res.ok) throw new Error("Failed to fetch properties");
           const properties = await res.json();
 
@@ -1377,7 +1377,7 @@
         if (!confirm("Approve this property? It will become visible to tenants.")) return;
         try {
           const response = await fetch(
-            `http://localhost:8080/api/properties/${propertyId}`,
+            `https://smart-house-system-backend.onrender.com/api/properties/${propertyId}`,
           );
           if (response.ok) {
             const prop = await response.json();
@@ -1385,7 +1385,7 @@
             delete prop.rejectedAt;
 
             const saveRes = await fetch(
-              `http://localhost:8080/api/admin/properties/${propertyId}`,
+              `https://smart-house-system-backend.onrender.com/api/admin/properties/${propertyId}`,
               {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
@@ -1409,7 +1409,7 @@
         if (!confirm("Reject this property? It will be hidden from tenants.")) return;
         try {
           const response = await fetch(
-            `http://localhost:8080/api/properties/${propertyId}`,
+            `https://smart-house-system-backend.onrender.com/api/properties/${propertyId}`,
           );
           if (response.ok) {
             const prop = await response.json();
@@ -1417,7 +1417,7 @@
             prop.rejectedAt = new Date().toISOString();
 
             const saveRes = await fetch(
-              `http://localhost:8080/api/admin/properties/${propertyId}`,
+              `https://smart-house-system-backend.onrender.com/api/admin/properties/${propertyId}`,
               {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
@@ -1440,7 +1440,7 @@
       // --- Tab 2: Manage Tenants CRUD ---
       async function loadTenants() {
         try {
-          const res = await fetch("http://localhost:8080/api/admin/tenants");
+          const res = await fetch("https://smart-house-system-backend.onrender.com/api/admin/tenants");
           if (res.ok) {
             const tenants = await res.json();
             const body = document.getElementById("tenants-table-body");
@@ -1487,9 +1487,9 @@
 
       async function editTenant(id) {
         try {
-          const res = await fetch(`http://localhost:8080/api/properties`); // Use check helper or similar, but since we retrieve users from tenants list:
+          const res = await fetch(`https://smart-house-system-backend.onrender.com/api/properties`); // Use check helper or similar, but since we retrieve users from tenants list:
           const tenantsRes = await fetch(
-            "http://localhost:8080/api/admin/tenants",
+            "https://smart-house-system-backend.onrender.com/api/admin/tenants",
           );
           if (tenantsRes.ok) {
             const tenants = await tenantsRes.json();
@@ -1536,8 +1536,8 @@
 
           const method = id ? "PUT" : "POST";
           const url = id
-            ? `http://localhost:8080/api/admin/tenants/${id}`
-            : "http://localhost:8080/api/admin/tenants";
+            ? `https://smart-house-system-backend.onrender.com/api/admin/tenants/${id}`
+            : "https://smart-house-system-backend.onrender.com/api/admin/tenants";
 
           try {
             const response = await fetch(url, {
@@ -1563,7 +1563,7 @@
           return;
         try {
           const res = await fetch(
-            `http://localhost:8080/api/admin/tenants/${id}`,
+            `https://smart-house-system-backend.onrender.com/api/admin/tenants/${id}`,
             { method: "DELETE" },
           );
           if (res.ok) {
@@ -1579,7 +1579,7 @@
       // --- Tab 3: Manage Landlords CRUD ---
       async function loadLandlords() {
         try {
-          const res = await fetch("http://localhost:8080/api/admin/landlords");
+          const res = await fetch("https://smart-house-system-backend.onrender.com/api/admin/landlords");
           if (res.ok) {
             const landlords = await res.json();
             const body = document.getElementById("landlords-table-body");
@@ -1628,7 +1628,7 @@
       async function editLandlord(id) {
         try {
           const landlordsRes = await fetch(
-            "http://localhost:8080/api/admin/landlords",
+            "https://smart-house-system-backend.onrender.com/api/admin/landlords",
           );
           if (landlordsRes.ok) {
             const landlords = await landlordsRes.json();
@@ -1675,8 +1675,8 @@
 
           const method = id ? "PUT" : "POST";
           const url = id
-            ? `http://localhost:8080/api/admin/landlords/${id}`
-            : "http://localhost:8080/api/admin/landlords";
+            ? `https://smart-house-system-backend.onrender.com/api/admin/landlords/${id}`
+            : "https://smart-house-system-backend.onrender.com/api/admin/landlords";
 
           try {
             const response = await fetch(url, {
@@ -1702,7 +1702,7 @@
           return;
         try {
           const res = await fetch(
-            `http://localhost:8080/api/admin/landlords/${id}`,
+            `https://smart-house-system-backend.onrender.com/api/admin/landlords/${id}`,
             { method: "DELETE" },
           );
           if (res.ok) {
@@ -1718,7 +1718,7 @@
       // --- Tab 4: Manage Properties CRUD ---
       async function loadProperties() {
         try {
-          const res = await fetch("http://localhost:8080/api/admin/properties");
+          const res = await fetch("https://smart-house-system-backend.onrender.com/api/admin/properties");
           if (res.ok) {
             const properties = await res.json();
             const body = document.getElementById("properties-table-body");
@@ -1773,7 +1773,7 @@
 
       async function editAdminProperty(id) {
         try {
-          const res = await fetch(`http://localhost:8080/api/properties/${id}`);
+          const res = await fetch(`https://smart-house-system-backend.onrender.com/api/properties/${id}`);
           if (res.ok) {
             const prop = await res.json();
 
@@ -1848,8 +1848,8 @@
 
           const method = id ? "PUT" : "POST";
           const url = id
-            ? `http://localhost:8080/api/admin/properties/${id}`
-            : "http://localhost:8080/api/admin/properties";
+            ? `https://smart-house-system-backend.onrender.com/api/admin/properties/${id}`
+            : "https://smart-house-system-backend.onrender.com/api/admin/properties";
 
           try {
             const response = await fetch(url, {
@@ -1874,7 +1874,7 @@
         if (!confirm("Are you sure you want to delete this property?")) return;
         try {
           const res = await fetch(
-            `http://localhost:8080/api/admin/properties/${id}`,
+            `https://smart-house-system-backend.onrender.com/api/admin/properties/${id}`,
             { method: "DELETE" },
           );
           if (res.ok) {
@@ -1889,8 +1889,8 @@
 
       async function loadUsers() {
         try {
-          const tenantsRes = await fetch("http://localhost:8080/api/admin/tenants");
-          const landlordsRes = await fetch("http://localhost:8080/api/admin/landlords");
+          const tenantsRes = await fetch("https://smart-house-system-backend.onrender.com/api/admin/tenants");
+          const landlordsRes = await fetch("https://smart-house-system-backend.onrender.com/api/admin/landlords");
           
           let tenants = [];
           let landlords = [];

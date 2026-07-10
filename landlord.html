@@ -497,14 +497,14 @@
     async function loadLandlordDashboard() {
         try {
             // Fetch properties
-            const propResponse = await fetch(`http://localhost:8080/api/properties/landlord/${user.id}`);
+            const propResponse = await fetch(`https://smart-house-system-backend.onrender.com/api/properties/landlord/${user.id}`);
             if (propResponse.ok) {
                 const properties = await propResponse.json();
                 renderProperties(properties);
             }
             
             // Fetch tenant requests
-            const reqResponse = await fetch(`http://localhost:8080/api/rental-requests/landlord/${user.id}`);
+            const reqResponse = await fetch(`https://smart-house-system-backend.onrender.com/api/rental-requests/landlord/${user.id}`);
             if (reqResponse.ok) {
                 const requests = await reqResponse.json();
                 renderRequests(requests);
@@ -628,7 +628,7 @@
     async function approveRequest(requestId) {
         if (!confirm('Approve this tenant request? This will mark the property as Rented.')) return;
         try {
-            const response = await fetch(`http://localhost:8080/api/rental-requests/${requestId}/status`, {
+            const response = await fetch(`https://smart-house-system-backend.onrender.com/api/rental-requests/${requestId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -648,7 +648,7 @@
     async function declineRequest(requestId) {
         if (!confirm('Decline this tenant request?')) return;
         try {
-            const response = await fetch(`http://localhost:8080/api/rental-requests/${requestId}/status`, {
+            const response = await fetch(`https://smart-house-system-backend.onrender.com/api/rental-requests/${requestId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -668,7 +668,7 @@
     async function deleteProperty(propertyId) {
         if (!confirm('Are you sure you want to delete this property listing? This action cannot be undone.')) return;
         try {
-            const response = await fetch(`http://localhost:8080/api/properties/${propertyId}`, {
+            const response = await fetch(`https://smart-house-system-backend.onrender.com/api/properties/${propertyId}`, {
                 method: 'DELETE'
             });
 
@@ -700,7 +700,7 @@
 
     async function openEditModal(propertyId) {
         try {
-            const response = await fetch(`http://localhost:8080/api/properties/${propertyId}`);
+            const response = await fetch(`https://smart-house-system-backend.onrender.com/api/properties/${propertyId}`);
             if (response.ok) {
                 const prop = await response.json();
                 
@@ -753,7 +753,7 @@
         };
 
         const method = id ? 'PUT' : 'POST';
-        const url = id ? `http://localhost:8080/api/properties/${id}` : 'http://localhost:8080/api/properties';
+        const url = id ? `https://smart-house-system-backend.onrender.com/api/properties/${id}` : 'https://smart-house-system-backend.onrender.com/api/properties';
 
         try {
             const response = await fetch(url, {

@@ -160,7 +160,7 @@
         async function fetchDetails() {
             try {
                 // 1. Fetch Property Details
-                const propRes = await fetch(`http://localhost:8080/api/properties/${propertyId}`);
+                const propRes = await fetch(`https://smart-house-system-backend.onrender.com/api/properties/${propertyId}`);
                 if (!propRes.ok) throw new Error('Failed to load property details');
                 const property = await propRes.json();
 
@@ -183,7 +183,7 @@
                 `;
 
                 // 2. Fetch Landlord Contact Details
-                const contactRes = await fetch(`http://localhost:8080/api/rental-requests/property/${propertyId}/tenant/${user.id}/contact`);
+                const contactRes = await fetch(`https://smart-house-system-backend.onrender.com/api/rental-requests/property/${propertyId}/tenant/${user.id}/contact`);
                 if (!contactRes.ok) throw new Error('Failed to load landlord contact');
                 const landlord = await contactRes.json();
 
