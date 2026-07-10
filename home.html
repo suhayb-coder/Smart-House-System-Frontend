@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Housing System - Explore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dae2ff",
+                        "surface": "#f7f9fb",
+                        "outline-variant": "#c3c6d6",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d5e3fd",
+                        "on-primary-fixed": "#001848",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-container": "#c4d2ff",
+                        "surface-container-high": "#e6e8ea",
+                        "inverse-primary": "#b2c5ff",
+                        "background": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-dim": "#d8dadc",
+                        "surface-container": "#eceef0",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#003d9b",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-container": "#0052cc",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-container": "#006a2d",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#434654",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#57657b",
+                        "on-background": "#191c1e",
+                        "tertiary": "#004f20",
+                        "secondary": "#515f74",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-container": "#5aef82",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#0c56d0",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "outline": "#737685"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body, html {
+          background-color: #010127 !important;
+          color: #f1f5f9 !important;
+        }
+        .bg-surface-container-lowest,
+        .bg-surface-container-low,
+        .bg-surface-container,
+        .bg-surface-container-high,
+        .bg-surface-container-highest,
+        .bg-surface,
+        .bg-surface-bright,
+        .bg-white,
+        .glass-panel,
+        aside,
+        nav,
+        form,
+        table,
+        .tab-content,
+        #property-modal > div,
+        #tenant-modal > div,
+        #landlord-modal > div,
+        #admin-prop-modal > div,
+        #contact-modal > div {
+          background-color: #080830 !important;
+          color: #f1f5f9 !important;
+          border-color: #1e1e50 !important;
+        }
+        header, .border-b, .border-t, .border, .border-outline-variant, .border-surface-variant {
+          border-color: #1e1e50 !important;
+        }
+        .text-on-surface,
+        .text-on-surface-variant,
+        .text-on-background,
+        .text-primary,
+        .text-primary-container,
+        .text-secondary,
+        .text-tertiary,
+        .text-error,
+        .text-slate-800,
+        .text-slate-900,
+        .text-slate-700,
+        .text-slate-600,
+        .text-gray-900,
+        .text-gray-800,
+        .text-gray-700,
+        .text-gray-600,
+        .text-zinc-800,
+        .text-zinc-700,
+        .text-zinc-600,
+        .text-\[\#0F172A\],
+        .text-\[\#1E293B\],
+        p,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        label,
+        td,
+        th,
+        a,
+        li,
+        small {
+          color: #e2e8f0 !important;
+        }
+        .text-on-surface-variant,
+        .text-outline,
+        .text-slate-500,
+        .text-gray-500,
+        .text-gray-400 {
+          color: #94a3b8 !important;
+        }
+        input, select, textarea {
+          background-color: #050522 !important;
+          color: #ffffff !important;
+          border-color: #1e1e50 !important;
+        }
+        input::placeholder, textarea::placeholder {
+          color: #475569 !important;
+        }
+        tr:hover,
+        .hover\:bg-surface-bright:hover,
+        .hover\:bg-surface-container-low:hover,
+        .hover\:bg-surface-container-high:hover {
+          background-color: #12124e !important;
+        }
+        button {
+          border-color: transparent !important;
+        }
+        .page-content, .page-content * {
+          color: #e2e8f0 !important;
+        }
+        /* ── Responsive: Mobile Nav Drawer ── */
+        #mobile-nav-overlay {
+          display: none;
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.6);
+          z-index: 9998;
+        }
+        #mobile-nav-overlay.open { display: block; }
+        #mobile-nav-drawer {
+          position: fixed;
+          right: 0; top: 0; bottom: 0;
+          width: 260px;
+          background: #080830;
+          border-left: 1px solid #1e1e50;
+          z-index: 9999;
+          transform: translateX(100%);
+          transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+          display: flex;
+          flex-direction: column;
+          padding: 24px 16px;
+          gap: 8px;
+        }
+        #mobile-nav-drawer.open { transform: translateX(0); }
+        /* ── Responsive: hero text scaling ── */
+        @media (max-width: 640px) {
+          .hero-title { font-size: 32px !important; line-height: 40px !important; }
+          .hero-subtitle { font-size: 15px !important; }
+          /* contact modal */
+          #contact-modal > div {
+            width: calc(100vw - 24px) !important;
+            max-width: 100% !important;
+            margin: 12px !important;
+            max-height: 90vh;
+            overflow-y: auto;
+          }
+          /* Search bar stack on mobile */
+          .search-bar { flex-direction: column !important; }
+        }
+    </style>
+</head>
+<body class="antialiased text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Mobile Nav Overlay -->
+<div id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<!-- Mobile Nav Drawer -->
+<div id="mobile-nav-drawer" role="dialog" aria-label="Mobile Navigation">
+  <div class="flex justify-between items-center mb-4">
+    <span class="font-bold text-white text-base">Smart Housing</span>
+    <button onclick="closeMobileNav()" class="w-8 h-8 flex items-center justify-center rounded-full" style="background:#1e1e50">
+      <span class="material-symbols-outlined text-white" style="font-size:18px">close</span>
+    </button>
+  </div>
+  <a href="home.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm" style="color:#e2e8f0">Explore Properties</a>
+  <a href="landlord.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm" style="color:#e2e8f0">Management</a>
+  <div class="mt-auto pt-4 border-t border-[#1e1e50]">
+    <a id="mobile-account-link" href="login.html" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-white" style="background:#0052cc">Login / Register</a>
+  </div>
+</div>
+<!-- TopNavBar Component -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-4 md:px-margin-desktop max-w-container-max mx-auto h-16">
+<!-- Brand Logo -->
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">Smart Housing</span>
+</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex gap-6 items-center h-full">
+<a class="h-full flex items-center px-2 text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="landlord.html">Management</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-3">
+<a id="account-link" href="login.html" class="hidden md:flex bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 rounded items-center gap-2 hover:opacity-90 transition-opacity">
+                    Login / Register
+                </a>
+<!-- Mobile hamburger -->
+<button onclick="openMobileNav()" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg" style="background:#1e1e50" aria-label="Open menu">
+  <span class="material-symbols-outlined text-white" style="font-size:22px">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center w-full">
+<!-- Hero Section with Search -->
+<section class="w-full relative bg-surface-container-lowest pt-12 pb-16 md:pt-20 md:pb-24 px-4 md:px-margin-desktop flex justify-center border-b border-outline-variant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVnI-kJ5b-1_Hz0DV13e3fOGZRWwpviZ0CK2Hzd0rlLwEhDYJv9wLF5NY9S9tmbhJJzdcx1WwnMz_mmeSV2bMBtslMQO8T--0ENxCggF2gXpZRAXUCHLsOh7mrvN1wZKLAjgvQUoI9DQQK9kmu9m-aOX_b9rF5vdZfzy-a2NdhstahxUmz-Zl_mxP80yjOfcZl0GuoMKYPdiH9AABr8Ysp3mMIV9o08VAEP6Jm979eRUQ0M5wtX-4P2Q'); background-size: cover; background-position: center;">
+<!-- Overlay for readability -->
+<div class="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
+<div class="relative z-10 max-w-[800px] w-full flex flex-col items-center text-center gap-8">
+<div class="space-y-4">
+<h1 class="hero-title font-display-lg text-display-lg text-on-surface">Find Your Perfect Property</h1>
+<p class="hero-subtitle font-body-lg text-body-lg text-on-surface-variant max-w-[600px] mx-auto">Explore residential spaces engineered for institutional security and modern living.</p>
+</div>
+<!-- Search Bar -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-lg p-4 flex flex-col md:flex-row gap-4 items-center border border-outline-variant">
+<div class="flex-grow w-full relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline">location_on</span>
+<input class="w-full pl-12 pr-4 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md bg-surface" placeholder="Location or Area" type="text"/>
+</div>
+<div class="w-full md:w-auto flex gap-4">
+<div class="relative flex-grow">
+<select class="w-full appearance-none pl-4 pr-10 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md bg-surface text-on-surface-variant">
+<option value="">Property Type</option>
+<option value="apartment">Apartment</option>
+<option value="house">House</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">arrow_drop_down</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded hover:bg-primary-container transition-colors flex items-center justify-center gap-2 whitespace-nowrap min-w-[120px]">
+<span class="material-symbols-outlined">search</span> Search
+                         </button>
+</div>
+</div>
+<div id="auth-cta" class="flex flex-wrap items-center justify-center gap-3"></div>
+</div>
+</section>
+<!-- Featured Properties Grid -->
+<section class="w-full max-w-container-max mx-auto px-margin-desktop py-16 space-y-8">
+<div class="flex justify-between items-end border-b border-outline-variant pb-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-[#e2e8f0] mb-2">Featured Properties</h2>
+<p class="font-body-md text-body-md text-[#94a3b8]">Hand-selected spaces meeting our highest standards of security and comfort.</p>
+</div>
+<a class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline" href="#">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Bento-style Grid Layout -->
+<div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+    <!-- Loaded dynamically -->
+</div>
+</section>
+</main>
+
+<!-- Contact Details Modal -->
+<div id="contact-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+  <div class="bg-surface-container-lowest p-8 rounded-xl max-w-md w-full shadow-2xl border border-outline-variant relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="text-center mb-6">
+      <div class="w-16 h-16 rounded-full bg-primary-fixed text-primary flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">contact_phone</span>
+      </div>
+      <h3 class="font-headline-md text-headline-md text-on-surface">Landlord Contact Details</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-2">Reach out to coordinate showing and lease agreement.</p>
+    </div>
+    <div class="space-y-4">
+      <div class="flex items-center gap-3 p-3 bg-surface rounded border border-outline-variant">
+        <span class="material-symbols-outlined text-primary">person</span>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant m-0">Full Name</p>
+          <p id="landlord-name" class="font-label-md text-label-md text-on-surface m-0 font-bold">-</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 p-3 bg-surface rounded border border-outline-variant">
+        <span class="material-symbols-outlined text-primary">mail</span>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant m-0">Email Address</p>
+          <p id="landlord-email" class="font-label-md text-label-md text-on-surface m-0 font-bold">-</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 p-3 bg-surface rounded border border-outline-variant">
+        <span class="material-symbols-outlined text-primary">phone</span>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant m-0">Phone Number</p>
+          <p id="landlord-phone" class="font-label-md text-label-md text-on-surface m-0 font-bold">-</p>
+        </div>
+      </div>
+    </div>
+    <button onclick="closeModal()" class="w-full mt-6 bg-primary-container text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">
+      Done
+    </button>
+  </div>
+</div>
+
+<!-- Footer Component -->
+<footer class="bg-surface-container-high dark:bg-inverse-surface border-t border-outline-variant dark:border-outline full-width bottom mt-auto">
+<div class="w-full py-10 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-base">
+<!-- Brand / Copyright -->
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-headline-md text-headline-md text-primary dark:text-inverse-primary">Smart Housing</span>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant text-sm">© 2026 Smart Housing System. All rights reserved.</p>
+</div>
+<!-- Links -->
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Cookie Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Support Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">Contact Us</a>
+</nav>
+</div>
+</footer>
+
+<script>
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    const normalizedRole = user?.role?.toUpperCase?.() || '';
+
+    const accountLink = document.getElementById('account-link');
+    const authCta = document.getElementById('auth-cta');
+    const dashboardLink = document.querySelector('a[href="tenant.html"]');
+    const managementLink = document.querySelector('a[href="landlord.html"]');
+
+    if (accountLink) {
+        if (user) {
+            accountLink.innerHTML = `${user.fullName || 'My Account'} (${normalizedRole}) <img alt="User profile" class="w-6 h-6 rounded-full object-cover ml-1 inline-block" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrsz6pW2E_k9AY6ibV6aJ9P9bLWoNk8Fy1pmY4ayy_US3tY2VGCIK9n6qrsGSbrhMh6aeT8anYwTN4W38hcQn3JnMNHTlGZdocrhyGdem97oODUA106Ru5HyYYnmnPhs_GMw1aDjMoSYzO2jT9jJIU9L2BoHccq1UKxMG1aIiNn7oPKf6POBzs0P2vljCNlNc2GdFid_x-_lwGxLmBc-0_FveHNVSUqPcuQM25lS8_WbQxKSbYCKDmeQ"/>`;
+
+            if (normalizedRole === 'ADMIN') {
+                accountLink.href = 'admin.html';
+            } else if (normalizedRole === 'LANDLORD') {
+                accountLink.href = 'landlord.html';
+            } else {
+                accountLink.href = 'tenant.html';
+            }
+        } else {
+            accountLink.innerHTML = 'Login / Register';
+            accountLink.href = 'login.html';
+        }
+    }
+
+    if (authCta) {
+        if (user) {
+            const dashboardPage = normalizedRole === 'ADMIN' ? 'admin.html' : normalizedRole === 'LANDLORD' ? 'landlord.html' : 'tenant.html';
+            authCta.innerHTML = `<a href="${dashboardPage}" class="bg-primary text-white px-4 py-2 rounded font-label-md text-label-md">Go to Dashboard</a>`;
+        } else {
+            authCta.innerHTML = `
+                <a href="login.html" class="bg-primary text-white px-4 py-2 rounded font-label-md text-label-md">Sign In</a>
+                <a href="register.html" class="border border-outline-variant px-4 py-2 rounded font-label-md text-label-md text-on-surface">Create Account</a>
+            `;
+        }
+    }
+
+    if (dashboardLink) {
+        dashboardLink.href = user ? (normalizedRole === 'ADMIN' ? 'admin.html' : normalizedRole === 'LANDLORD' ? 'landlord.html' : 'tenant.html') : 'login.html';
+    }
+
+    if (managementLink) {
+        managementLink.style.display = user && normalizedRole !== 'TENANT' ? 'flex' : 'none';
+    }
+
+    let tenantRequests = [];
+
+    // Load tenant requests if tenant
+    async function loadTenantRequests() {
+        if (user && user.role === 'TENANT') {
+            try {
+                const response = await fetch(`http://localhost:8080/api/rental-requests/tenant/${user.id}`);
+                if (response.ok) {
+                    tenantRequests = await response.json();
+                }
+            } catch (error) {
+                console.error('Error fetching tenant requests:', error);
+            }
+        }
+    }
+
+    async function loadProperties() {
+        await loadTenantRequests();
+        try {
+            const response = await fetch('http://localhost:8080/api/properties');
+            if (response.ok) {
+                const properties = await response.json();
+                renderProperties(properties);
+            }
+        } catch (error) {
+            console.error('Error loading properties:', error);
+            document.getElementById('properties-grid').innerHTML = '<p class="text-error col-span-3 text-center">Unable to connect to the backend server.</p>';
+        }
+    }
+
+    function renderProperties(properties) {
+        const grid = document.getElementById('properties-grid');
+        grid.innerHTML = '';
+        
+        if (properties.length === 0) {
+            grid.innerHTML = '<p class="text-on-surface-variant col-span-3 text-center">No properties available at the moment.</p>';
+            return;
+        }
+
+        properties.forEach(prop => {
+            const hasRequested = tenantRequests.some(req => req.propertyId === prop.id);
+            let actionBtnHtml = '';
+            
+            if (user && user.role === 'TENANT') {
+                if (hasRequested) {
+                    actionBtnHtml = `<button data-action="contact" data-id="${prop.id}" class="w-full bg-[#006A2D] text-white font-label-md text-label-md py-3 rounded border border-transparent hover:opacity-90 transition-colors flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[18px]">verified</span> Contact Info</button>`;
+                } else {
+                    actionBtnHtml = `<button data-action="confirm" data-id="${prop.id}" class="w-full bg-primary-container text-white font-label-md text-label-md py-3 rounded hover:bg-primary transition-colors">Confirm Interest</button>`;
+                }
+            } else {
+                actionBtnHtml = `<button data-action="details" class="w-full bg-surface text-secondary font-label-md text-label-md py-3 rounded border border-outline-variant hover:border-primary hover:text-primary transition-colors">View Details</button>`;
+            }
+
+            const card = document.createElement('article');
+            card.className = 'col-span-1 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden hover:shadow-[0px_8px_30px_rgba(51,65,85,0.12)] transition-shadow duration-300 flex flex-col shadow-[0px_4px_20px_rgba(51,65,85,0.08)]';
+            
+            const imageSrc = prop.imageUrl || 'https://lh3.googleusercontent.com/aida-public/AB6AXuAd3HUTgQdAQqjobd1Hdh6QxkgmtTlIgvYFxEGorS1JSY_hNVUmYnVualERmV1rXRmt1-7k9qzO-OdxAqf4ORi4APdUoUs4R0sneNtR17-ywzNF5LwebhMAgWUP7KcaZKocnC5Guu_sq20q2YuYI-CnR3zOb4acVhckROgq1-S9gXefmrgxLWI23PCSJ_A95wyNJ9ovRfUpZ3bJu9Yadx4pEvarSfbh6rJY2BRusZF6cH6NRIYaYpiO_g';
+
+            card.innerHTML = `
+                <div class="w-full h-48 relative">
+                    <img alt="${prop.title}" class="w-full h-full object-cover" src="${imageSrc}"/>
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        ${prop.verified ? '' : `
+                            <span class="bg-surface-container-high text-[#e2e8f0] font-label-sm text-label-sm px-2 py-1 rounded flex items-center gap-1 uppercase tracking-wider shadow-sm">
+                                Pending
+                            </span>
+                        `}
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                    <div>
+                        <h3 class="font-headline-md text-headline-md text-[#e2e8f0] text-lg leading-tight mb-1">${prop.title}</h3>
+                        <p class="font-body-md text-body-md text-[#e2e8f0] flex items-center gap-1 mb-3 text-sm">
+                            <span class="material-symbols-outlined text-outline text-sm">location_on</span> ${prop.address}
+                        </p>
+                        <span class="font-headline-md text-headline-md text-[#e2e8f0] text-xl">$${prop.price.toLocaleString()}<span class="text-label-md text-[#94a3b8] font-normal">/mo</span></span>
+                        <div class="flex gap-4 mt-4 text-[#e2e8f0] text-sm">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> ${prop.beds || '-'} Beds</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bathtub</span> ${prop.baths || '-'} Baths</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">square_foot</span> ${prop.sqft ? prop.sqft.toLocaleString() : '-'} sqft</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-outline-variant">
+                        ${actionBtnHtml}
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    async function confirmInterest(propertyId) {
+        if (!user || user.role !== 'TENANT') {
+            alert('Only Tenants can confirm interest in properties.');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8080/api/rental-requests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tenantId: user.id, propertyId: propertyId })
+            });
+
+            if (response.ok) {
+                alert('Interest confirmed successfully! Redirecting to landlord contact info.');
+                window.location.href = `landlordContact.html?propertyId=${propertyId}`;
+            } else {
+                const data = await response.json();
+                alert('Error: ' + (data.message || 'Failed to confirm interest'));
+            }
+        } catch (error) {
+            console.error('Error confirming interest:', error);
+            alert('Unable to connect to the backend server.');
+        }
+    }
+
+    function viewContact(propertyId) {
+        window.location.href = `landlordContact.html?propertyId=${propertyId}`;
+    }
+
+    function closeModal() {
+        document.getElementById('contact-modal').classList.add('hidden');
+    }
+
+    // Initialize page
+    function initExplorePage() {
+        console.log("Smart House System: Initializing explore page...");
+        loadProperties();
+        
+        let viewDetailsClickCount = 0;
+        const grid = document.getElementById('properties-grid');
+        if (grid) {
+            grid.addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (!button) return;
+                
+                const action = button.getAttribute('data-action');
+                const id = button.getAttribute('data-id');
+                console.log("Smart House System: Button clicked - Action:", action, "ID:", id);
+                
+                if (action === 'details') {
+                    if (viewDetailsClickCount < 3) {
+                        alert('Please register or login to get more details.');
+                        viewDetailsClickCount++;
+                    }
+                } else if (action === 'confirm') {
+                    confirmInterest(id);
+                } else if (action === 'contact') {
+                    viewContact(id);
+                }
+            });
+        } else {
+            console.error("Smart House System: properties-grid element not found!");
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        window.addEventListener('DOMContentLoaded', initExplorePage);
+    } else {
+        initExplorePage();
+    }
+</script>
+<script>
+  function openMobileNav() {
+    document.getElementById('mobile-nav-drawer').classList.add('open');
+    document.getElementById('mobile-nav-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileNav() {
+    document.getElementById('mobile-nav-drawer').classList.remove('open');
+    document.getElementById('mobile-nav-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Sync mobile account link with login state
+  (function syncMobileAccountLink() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    const mobileLink = document.getElementById('mobile-account-link');
+    if (mobileLink && user) {
+      const role = user.role ? user.role.toLowerCase() : '';
+      mobileLink.textContent = user.fullName || 'My Account';
+      mobileLink.href = role === 'landlord' ? 'landlord.html' : role === 'admin' ? 'admin.html' : 'tenant.html';
+    }
+  })();
+</script>
+</body></html>

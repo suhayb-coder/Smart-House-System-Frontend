@@ -1,0 +1,536 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Smart Housing System - Register</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#0d1c2f",
+              background: "#f7f9fb",
+              "primary-container": "#0052cc",
+              "surface-bright": "#f7f9fb",
+              "tertiary-fixed": "#6bff8f",
+              "on-background": "#191c1e",
+              error: "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "on-surface": "#191c1e",
+              secondary: "#515f74",
+              tertiary: "#004f20",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed": "#d5e3fd",
+              "on-tertiary-fixed": "#002109",
+              "on-surface-variant": "#434654",
+              "error-container": "#ffdad6",
+              primary: "#003d9b",
+              "surface-tint": "#0c56d0",
+              surface: "#f7f9fb",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#4ae176",
+              "surface-container-highest": "#e0e3e5",
+              "on-tertiary-fixed-variant": "#005321",
+              "on-primary-fixed": "#001848",
+              "tertiary-container": "#006a2d",
+              "outline-variant": "#c3c6d6",
+              outline: "#737685",
+              "primary-fixed": "#dae2ff",
+              "inverse-surface": "#2d3133",
+              "surface-container": "#eceef0",
+              "inverse-primary": "#b2c5ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "secondary-fixed-dim": "#b9c7e0",
+              "on-primary-fixed-variant": "#0040a2",
+              "on-secondary-fixed-variant": "#3a485c",
+              "inverse-on-surface": "#eff1f3",
+              "on-secondary-container": "#57657b",
+              "primary-fixed-dim": "#b2c5ff",
+              "on-primary-container": "#c4d2ff",
+              "surface-variant": "#e0e3e5",
+              "secondary-container": "#d5e3fd",
+              "on-tertiary-container": "#5aef82",
+              "surface-container-high": "#e6e8ea",
+              "on-error-container": "#93000a",
+              "surface-dim": "#d8dadc",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "margin-desktop": "40px",
+              gutter: "24px",
+              "container-max": "1280px",
+              "margin-mobile": "16px",
+              base: "8px",
+            },
+            fontFamily: {
+              "body-md": ["Inter"],
+              "display-lg": ["Inter"],
+              "headline-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-md": ["Inter"],
+              "headline-lg-mobile": ["Inter"],
+              "label-sm": ["Inter"],
+              "headline-lg": ["Inter"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body,
+      html {
+        background-color: #010127 !important;
+        color: #f1f5f9 !important;
+      }
+      .bg-surface-container-lowest,
+      .bg-surface-container-low,
+      .bg-surface-container,
+      .bg-surface-container-high,
+      .bg-surface-container-highest,
+      .bg-surface,
+      .bg-surface-bright,
+      .bg-white,
+      .glass-panel,
+      aside,
+      nav,
+      form,
+      table,
+      .tab-content,
+      #property-modal > div,
+      #tenant-modal > div,
+      #landlord-modal > div,
+      #admin-prop-modal > div,
+      #contact-modal > div {
+        background-color: #080830 !important;
+        color: #f1f5f9 !important;
+        border-color: #1e1e50 !important;
+      }
+      header,
+      .border-b,
+      .border-t,
+      .border,
+      .border-outline-variant,
+      .border-surface-variant {
+        border-color: #1e1e50 !important;
+      }
+      body, html, p, span, h1, h2, h3, h4, h5, h6, label, legend, li, th, td,
+      .text-on-surface, .text-on-surface-variant, .text-on-background,
+      .text-secondary, .text-tertiary, .text-error,
+      .text-slate-800, .text-slate-900, .text-slate-700, .text-slate-600,
+      .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600,
+      .text-zinc-800, .text-zinc-700, .text-zinc-600 {
+        color: #e2e8f0 !important;
+      }
+      a, .text-primary, .text-primary-container, .text-link {
+        color: #38bdf8 !important; /* Bright sky blue for dark mode readability */
+      }
+      a:hover {
+        color: #7dd3fc !important;
+      }
+      .text-outline, .text-slate-500, .text-gray-500, .text-gray-400 {
+        color: #94a3b8 !important;
+      }
+      input,
+      select,
+      textarea {
+        background-color: #050522 !important;
+        color: #ffffff !important;
+        border-color: #1e1e50 !important;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: #475569 !important;
+      }
+      tr:hover,
+      .hover\:bg-surface-bright:hover,
+      .hover\:bg-surface-container-low:hover,
+      .hover\:bg-surface-container-high:hover {
+        background-color: #12124e !important;
+      }
+      button {
+        border-color: transparent !important;
+      }
+      .page-content,
+      .page-content * {
+        color: #e2e8f0 !important;
+      }
+      .peer-checked\:bg-primary-fixed {
+        background-color: #1e1e50 !important;
+      }
+      .peer-checked\:border-primary {
+        border-color: #0052cc !important;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col antialiased"
+  >
+    <!-- Canvas (Main Content) -->
+    <main
+      class="flex-grow flex items-center justify-center p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto"
+    >
+      <div
+        class="bg-surface-container-lowest shadow-[0px_4px_20px_rgba(51,65,85,0.08)] rounded-xl w-full max-w-md overflow-hidden border border-surface-variant"
+      >
+        <div class="p-8">
+          <!-- Branding -->
+          <div class="text-center mb-8">
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container text-on-primary-container mb-4 shadow-sm"
+            >
+              <span
+                class="material-symbols-outlined text-headline-md"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >domain</span
+              >
+            </div>
+            <h1
+              class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg text-on-surface mb-2 tracking-tight"
+            >
+              Create Account
+            </h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Join Smart Housing System today.
+            </p>
+          </div>
+          <!-- Registration Form -->
+          <form class="space-y-6" action="login.html" method="POST">
+            <!-- Role Selection (Bento-style chips) -->
+            <fieldset class="space-y-2">
+              <legend
+                class="font-label-md text-label-md text-on-surface mb-2 block"
+              >
+                I am a...
+              </legend>
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Tenant Option -->
+                <label class="cursor-pointer relative">
+                  <input
+                    checked=""
+                    class="peer sr-only"
+                    name="role"
+                    type="radio"
+                    value="tenant"
+                  />
+                  <div
+                    class="rounded-lg border border-outline-variant bg-surface-container-lowest p-4 text-center hover:bg-surface-container-low transition-colors peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:ring-1 peer-checked:ring-primary shadow-sm flex flex-col items-center gap-2"
+                  >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >person</span
+                    >
+                    <span
+                      class="font-label-md text-label-md text-on-surface peer-checked:text-primary font-medium"
+                      >Tenant</span
+                    >
+                  </div>
+                </label>
+                <!-- Landlord Option -->
+                <label class="cursor-pointer relative">
+                  <input
+                    class="peer sr-only"
+                    name="role"
+                    type="radio"
+                    value="landlord"
+                  />
+                  <div
+                    class="rounded-lg border border-outline-variant bg-surface-container-lowest p-4 text-center hover:bg-surface-container-low transition-colors peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:ring-1 peer-checked:ring-primary shadow-sm flex flex-col items-center gap-2"
+                  >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >real_estate_agent</span
+                    >
+                    <span
+                      class="font-label-md text-label-md text-on-surface peer-checked:text-primary font-medium"
+                      >Landlord</span
+                    >
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+            <!-- Input Fields -->
+            <div class="space-y-4">
+              <!-- Full Name -->
+              <div>
+                <label
+                  class="block font-label-sm text-label-sm text-on-surface-variant mb-1"
+                  for="fullName"
+                  >Full Name</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-outline text-[20px]"
+                      >badge</span
+                    >
+                  </div>
+                  <input
+                    class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md shadow-sm transition-shadow"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Jane Doe"
+                    required=""
+                    type="text"
+                  />
+                </div>
+              </div>
+              <!-- Email -->
+              <div>
+                <label
+                  class="block font-label-sm text-label-sm text-on-surface-variant mb-1"
+                  for="email"
+                  >Email Address</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-outline text-[20px]"
+                      >mail</span
+                    >
+                  </div>
+                  <input
+                    class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md shadow-sm transition-shadow"
+                    id="email"
+                    name="email"
+                    placeholder="jane.doe@example.com"
+                    required=""
+                    type="email"
+                  />
+                </div>
+              </div>
+              <!-- Password -->
+              <div>
+                <label
+                  class="block font-label-sm text-label-sm text-on-surface-variant mb-1"
+                  for="password"
+                  >Password</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-outline text-[20px]"
+                      >lock</span
+                    >
+                  </div>
+                  <input
+                    class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md shadow-sm transition-shadow"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    required=""
+                    type="password"
+                  />
+                </div>
+                <p class="mt-1 font-label-sm text-label-sm text-outline">
+                  Must be at least 8 characters.
+                </p>
+              </div>
+              <!-- Confirm Password -->
+              <div>
+                <label
+                  class="block font-label-sm text-label-sm text-on-surface-variant mb-1"
+                  for="confirmPassword"
+                  >Confirm Password</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-outline text-[20px]"
+                      >lock_reset</span
+                    >
+                  </div>
+                  <input
+                    class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md shadow-sm transition-shadow"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="••••••••"
+                    required=""
+                    type="password"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- Actions -->
+            <div class="pt-2">
+              <button
+                class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm font-label-md text-label-md font-semibold text-on-primary bg-primary-container hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-opacity"
+                type="submit"
+              >
+                Create Account
+              </button>
+            </div>
+          </form>
+          <!-- Footer Links -->
+          <div class="mt-8 text-center border-t border-surface-variant pt-6">
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Already have an account?
+              <a
+                class="font-label-md text-label-md text-primary hover:text-primary-container hover:underline transition-colors font-semibold"
+                href="login.html"
+                >Sign in</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const fullName = document.getElementById("fullName").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          // Find selected role
+          const roleRadio = document.querySelector(
+            'input[name="role"]:checked',
+          );
+          const role = roleRadio ? roleRadio.value.toUpperCase() : "TENANT";
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+          }
+
+          try {
+            const response = await fetch(
+              "http://localhost:8080/api/auth/register",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ fullName, email, password, role }),
+              },
+            );
+
+            if (response.ok) {
+              alert("Registration successful! Please sign in.");
+              window.location.href = "login.html";
+            } else {
+              const data = await response.json();
+              alert("Error: " + (data.message || "Registration failed"));
+            }
+          } catch (error) {
+            console.error("Error during registration:", error);
+            alert("Unable to connect to the backend server.");
+          }
+        });
+    </script>
+    <style>
+      body, html, p, span, h1, h2, h3, h4, h5, h6, label, legend, li, th, td,
+      .text-on-surface, .text-on-surface-variant, .text-on-background,
+      .text-secondary, .text-tertiary, .text-error,
+      .text-slate-800, .text-slate-900, .text-slate-700, .text-slate-600,
+      .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600,
+      .text-zinc-800, .text-zinc-700, .text-zinc-600 {
+        color: #e2e8f0 !important;
+      }
+      a, .text-primary, .text-primary-container, .text-link {
+        color: #38bdf8 !important;
+      }
+      a:hover {
+        color: #7dd3fc !important;
+      }
+      /* Sibling selectors for checked radio card styling */
+      .peer:checked ~ div {
+        background-color: #1e1e50 !important;
+        border-color: #0052cc !important;
+      }
+      .peer:checked ~ div,
+      .peer:checked ~ div * {
+        color: #ffffff !important;
+      }
+      /* Force a clear primary blue background and white text for the submit button */
+      [type='submit'], button[type='submit'] {
+        background-color: #0052cc !important;
+        color: #ffffff !important;
+      }
+      [type='submit']:hover, button[type='submit']:hover {
+        background-color: #003d9b !important;
+      }
+    </style>
+  </body>
+</html>
