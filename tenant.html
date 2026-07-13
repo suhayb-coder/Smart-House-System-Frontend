@@ -264,24 +264,30 @@
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
         z-index: 9998;
       }
-      #mobile-sidebar-overlay.open { display: block; }
+      #mobile-sidebar-overlay.open {
+        display: block;
+      }
       #mobile-nav {
         position: fixed;
-        left: 0; top: 0; bottom: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
         width: 280px;
         background: #080830;
         border-right: 1px solid #1e1e50;
         z-index: 9999;
         transform: translateX(-100%);
-        transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
         overflow-y: auto;
       }
-      #mobile-nav.open { transform: translateX(0); }
+      #mobile-nav.open {
+        transform: translateX(0);
+      }
       /* Modal full-width on mobile */
       @media (max-width: 640px) {
         #property-modal > div {
@@ -302,32 +308,76 @@
     <div id="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
     <!-- Mobile Sidebar Drawer -->
     <nav id="mobile-nav" aria-label="Mobile Navigation">
-      <div class="p-5 border-b border-[#1e1e50] flex items-center justify-between">
+      <div
+        class="p-5 border-b border-[#1e1e50] flex items-center justify-between"
+      >
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center font-bold text-white text-sm">SH</div>
+          <div
+            class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center font-bold text-white text-sm"
+          >
+            SH
+          </div>
           <div>
-            <p class="font-bold text-sm text-white leading-tight m-0">Smart Housing</p>
-            <p class="text-xs m-0" style="color:#94a3b8">Tenant Account</p>
+            <p class="font-bold text-sm text-white leading-tight m-0">
+              Smart Housing
+            </p>
+            <p class="text-xs m-0" style="color: #94a3b8">Tenant Account</p>
           </div>
         </div>
-        <button onclick="closeMobileSidebar()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#1e1e50] transition-colors">
-          <span class="material-symbols-outlined text-white" style="font-size:20px">close</span>
+        <button
+          onclick="closeMobileSidebar()"
+          class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#1e1e50] transition-colors"
+        >
+          <span
+            class="material-symbols-outlined text-white"
+            style="font-size: 20px"
+            >close</span
+          >
         </button>
       </div>
       <div class="flex-1 py-3 px-2">
-        <a href="tenant.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-white font-medium text-sm mb-1">
-          <span class="material-symbols-outlined" style="font-size:20px">dashboard</span> Overview
+        <a
+          href="tenant.html"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-white font-medium text-sm mb-1"
+        >
+          <span class="material-symbols-outlined" style="font-size: 20px"
+            >dashboard</span
+          >
+          Overview
         </a>
-        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm mb-1" style="color:#e2e8f0">
-          <span class="material-symbols-outlined" style="font-size:20px">search</span> Explore Houses
+        <a
+          href="index.html"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm mb-1"
+          style="color: #e2e8f0"
+        >
+          <span class="material-symbols-outlined" style="font-size: 20px"
+            >search</span
+          >
+          Explore Houses
         </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm mb-1" style="color:#e2e8f0">
-          <span class="material-symbols-outlined" style="font-size:20px">settings</span> Settings
+        <a
+          href="#"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm mb-1"
+          style="color: #e2e8f0"
+        >
+          <span class="material-symbols-outlined" style="font-size: 20px"
+            >settings</span
+          >
+          Settings
         </a>
       </div>
       <div class="p-3 border-t border-[#1e1e50]">
-        <a href="#" onclick="openLogoutModal(event)" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-400">
-          <span class="material-symbols-outlined text-red-400" style="font-size:20px">logout</span> Sign Out
+        <a
+          href="#"
+          onclick="openLogoutModal(event)"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-400"
+        >
+          <span
+            class="material-symbols-outlined text-red-400"
+            style="font-size: 20px"
+            >logout</span
+          >
+          Sign Out
         </a>
       </div>
     </nav>
@@ -425,7 +475,7 @@
           <li>
             <a
               class="text-error hover:bg-error-container rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 font-label-md text-label-md transition-colors"
-              href="#"
+              href="index.html"
               id="sign-out-btn"
               onclick="openLogoutModal(event)"
             >
@@ -452,7 +502,11 @@
         <div class="font-headline-md text-headline-md font-bold text-primary">
           Smart Housing
         </div>
-        <button onclick="openMobileSidebar()" class="text-on-surface-variant" aria-label="Open menu">
+        <button
+          onclick="openMobileSidebar()"
+          class="text-on-surface-variant"
+          aria-label="Open menu"
+        >
           <span class="material-symbols-outlined text-3xl">menu</span>
         </button>
       </div>
@@ -884,43 +938,76 @@
         }
       }
 
-
-
       // Load on start
       window.addEventListener("DOMContentLoaded", loadTenantDashboard);
     </script>
     <!-- Custom Logout Confirmation Modal -->
-    <div id="logout-modal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div class="bg-[#080830] border border-[#1e1e50] rounded-xl p-6 max-w-sm w-full mx-4 shadow-2xl">
-        <h3 class="text-lg font-bold text-white mb-2" style="color: #ffffff !important;">Confirm Logout</h3>
-        <p class="text-slate-400 text-sm mb-6" style="color: #94a3b8 !important;">Are you sure you want to log out of your account?</p>
+    <div
+      id="logout-modal"
+      class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm"
+    >
+      <div
+        class="bg-[#080830] border border-[#1e1e50] rounded-xl p-6 max-w-sm w-full mx-4 shadow-2xl"
+      >
+        <h3
+          class="text-lg font-bold text-white mb-2"
+          style="color: #ffffff !important"
+        >
+          Confirm Logout
+        </h3>
+        <p
+          class="text-slate-400 text-sm mb-6"
+          style="color: #94a3b8 !important"
+        >
+          Are you sure you want to log out of your account?
+        </p>
         <div class="flex justify-end gap-3">
-          <button onclick="closeLogoutModal()" class="px-4 py-2 rounded transition-colors font-medium text-sm" style="background-color: #1e293b !important; color: #ffffff !important;">Cancel</button>
-          <button onclick="confirmLogout()" class="px-4 py-2 rounded transition-colors font-medium text-sm" style="background-color: #dc2626 !important; color: #ffffff !important;">Log Out</button>
+          <button
+            onclick="closeLogoutModal()"
+            class="px-4 py-2 rounded transition-colors font-medium text-sm"
+            style="
+              background-color: #1e293b !important;
+              color: #ffffff !important;
+            "
+          >
+            Cancel
+          </button>
+          <button
+            onclick="confirmLogout()"
+            class="px-4 py-2 rounded transition-colors font-medium text-sm"
+            style="
+              background-color: #dc2626 !important;
+              color: #ffffff !important;
+            "
+          >
+            Log Out
+          </button>
         </div>
       </div>
     </div>
     <script>
       function openLogoutModal(e) {
         if (e) e.preventDefault();
-        document.getElementById('logout-modal').classList.remove('hidden');
+        document.getElementById("logout-modal").classList.remove("hidden");
       }
       function closeLogoutModal() {
-        document.getElementById('logout-modal').classList.add('hidden');
+        document.getElementById("logout-modal").classList.add("hidden");
       }
       function confirmLogout() {
-        localStorage.removeItem('user');
-        window.location.href = 'index.html';
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
       }
       function openMobileSidebar() {
-        document.getElementById('mobile-nav').classList.add('open');
-        document.getElementById('mobile-sidebar-overlay').classList.add('open');
-        document.body.style.overflow = 'hidden';
+        document.getElementById("mobile-nav").classList.add("open");
+        document.getElementById("mobile-sidebar-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
       }
       function closeMobileSidebar() {
-        document.getElementById('mobile-nav').classList.remove('open');
-        document.getElementById('mobile-sidebar-overlay').classList.remove('open');
-        document.body.style.overflow = '';
+        document.getElementById("mobile-nav").classList.remove("open");
+        document
+          .getElementById("mobile-sidebar-overlay")
+          .classList.remove("open");
+        document.body.style.overflow = "";
       }
     </script>
   </body>
