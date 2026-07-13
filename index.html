@@ -479,6 +479,8 @@
             if (user && user.role === 'TENANT') {
                 if (hasRequested) {
                     actionBtnHtml = `<button data-action="contact" data-id="${prop.id}" class="w-full bg-[#006A2D] text-white font-label-md text-label-md py-3 rounded border border-transparent hover:opacity-90 transition-colors flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[18px]">verified</span> Contact Info</button>`;
+                } else if (prop.status === 'RENTED') {
+                    actionBtnHtml = `<button disabled class="w-full bg-surface-variant text-on-surface-variant font-label-md text-label-md py-3 rounded cursor-not-allowed">Already Rented</button>`;
                 } else {
                     actionBtnHtml = `<button data-action="confirm" data-id="${prop.id}" class="w-full bg-primary-container text-white font-label-md text-label-md py-3 rounded hover:bg-primary transition-colors">Confirm Interest</button>`;
                 }
