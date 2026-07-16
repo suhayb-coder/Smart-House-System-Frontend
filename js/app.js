@@ -228,6 +228,20 @@ function initDashboardPage() {
     
     if (user.role === 'ADMIN') {
         document.getElementById('admin-view').style.display = 'block';
+        
+        // Admin Visual Differentiation
+        document.body.classList.replace('bg-gray-50', 'bg-slate-100');
+        document.getElementById('dashboard-title').classList.replace('text-gray-900', 'text-slate-800');
+        const nav = document.querySelector('nav');
+        if (nav) {
+            nav.classList.remove('glass-nav');
+            nav.classList.add('bg-slate-900', 'shadow-md');
+            const logo = nav.querySelector('a.font-display');
+            if (logo) logo.classList.replace('text-gray-900', 'text-white');
+            const hiText = nav.querySelector('span.text-gray-800');
+            if (hiText) hiText.classList.replace('text-gray-800', 'text-gray-200');
+        }
+        
         initAdminDashboard();
     } else {
         document.getElementById('user-view').style.display = 'block';
@@ -309,15 +323,22 @@ async function loadAdminUsers() {
     }
 }
 
-window.openAdminUserModal = (userId) => {
-    const user = window.adminUsers.find(u => (u.userId || u.id) === userId);
-    if (!user) return;
-    
-    document.getElementById('admin-user-id').value = user.userId || user.id;
-    document.getElementById('admin-user-name').value = user.name || '';
-    document.getElementById('admin-user-email').value = user.email || '';
-    document.getElementById('admin-user-password').value = user.password || '';
-    document.getElementById('admin-user-role').value = user.role || 'USER';
+window.openAdminUserModal = (userId = null) => {
+    if (userId) {
+        const user = window.adminUsers.find(u => (u.userId || u.id) === userId);
+        if (user) {
+            document.getElementById('user-modal-title').textContent = 'Edit User';
+            document.getElementById('admin-user-id').value = user.userId || user.id;
+            document.getElementById('admin-user-name').value = user.name || '';
+            document.getElementById('admin-user-email').value = user.email || '';
+            document.getElementById('admin-user-password').value = user.password || '';
+            document.getElementById('admin-user-role').value = user.role || 'USER';
+        }
+    } else {
+        document.getElementById('user-modal-title').textContent = 'Add User';
+        document.getElementById('admin-user-form').reset();
+        document.getElementById('admin-user-id').value = '';
+    }
     
     document.getElementById('admin-user-modal').classList.remove('hidden');
 };
@@ -334,12 +355,17 @@ document.getElementById('admin-user-form')?.addEventListener('submit', async (e)
         role: document.getElementById('admin-user-role').value
     };
     try {
-        await api.updateUser(userId, userData);
-        showNotification('User updated successfully');
+        if (userId) {
+            await api.updateUser(userId, userData);
+            showNotification('User updated successfully');
+        } else {
+            await api.createUser(userData);
+            showNotification('User created successfully');
+        }
         closeAdminUserModal();
         loadAdminUsers();
     } catch (err) {
-        showNotification('Failed to update user', 'error');
+        showNotification('Failed to save user', 'error');
     }
 });
 
