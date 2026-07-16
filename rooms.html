@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zanzi Home Apartment | Rooms</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif']
+                    },
+                    colors: { 
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // Teal
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        },
+                        accent: '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="glass-nav fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-white font-bold text-xl shadow-lg">S</div>
+                    <a href="index.html" class="text-2xl font-display font-extrabold tracking-tight text-gray-900">
+                        Zanzi<span class="text-brand-600">Home</span>
+                    </a>
+                </div>
+                <div id="nav-right" class="flex space-x-6 items-center">
+                    <a href="rooms.html" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Explore</a>
+                    <a href="login.html" class="bg-gray-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-300 shadow-md">Login / Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24">
+        <!-- Header Section -->
+        <section class="bg-white border-b border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-4">Available Rooms</h1>
+                <p class="text-lg text-gray-500 max-w-2xl mx-auto">Browse our list of beautiful single and master rooms available for rent right now.</p>
+            </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div id="room-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rooms will be injected here by app.js -->
+                <div class="col-span-full text-center text-gray-500 py-10">Loading rooms...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-gray-800 pt-8 flex justify-between items-center">
+                <p class="text-gray-500 text-sm">&copy; 2026 Zanzi Home Apartment. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/app.js?v=3"></script>
+</body>
+</html>
