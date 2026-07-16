@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- ROOMS EXPLORER (Public / User) ---
+let allAvailableRooms = [];
+
 function initRoomsPage() {
     const roomList = document.getElementById('room-list');
     if (!roomList) return;
@@ -100,60 +102,124 @@ function initRoomsPage() {
             
             // Assume a room is rented if it has an 'ACCEPTED' request
             const rentedRoomIds = requests.filter(r => r.status === 'ACCEPTED').map(r => r.room.id);
-            const availableRooms = rooms.filter(r => !rentedRoomIds.includes(r.id));
+            allAvailableRooms = rooms.filter(r => !rentedRoomIds.includes(r.id));
             
-            if (availableRooms.length === 0) {
-                roomList.innerHTML = '<div class="col-span-full text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100"><p class="text-gray-500 text-lg">No rooms available at the moment.</p></div>';
-                return;
-            }
-            
-            roomList.innerHTML = availableRooms.map(r => {
-                const defaultImages = ['home1.jpg', 'home2.jpg', 'image3.jpg'];
-                const displayImage = defaultImages[r.id % defaultImages.length] || defaultImages[0];
-                
-                return `
-                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col">
-                    <img src="${displayImage}" alt="Room" class="w-full h-48 object-cover">
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 capitalize">${r.properties} Room</h3>
-                        <p class="text-gray-600 mb-4 flex-grow text-sm">${r.description || 'No description provided.'}</p>
-                        <p class="text-gray-400 mb-4 text-xs">Room ID: ${r.id}</p>
-                        
-                        <div class="mt-4">
-                            <input type="text" id="desc-${r.id}" placeholder="Why do you want to rent?" class="w-full mb-3 px-3 py-2 border rounded text-sm">
-                            <button class="w-full bg-brand-500 text-white font-semibold py-3 px-4 rounded-lg hover:bg-brand-600 transition-colors shadow-sm" onclick="requestRent(${r.id})">Request to Rent</button>
-                        </div>
-                    </div>
-                </div>
-                `;
-            }).join('');
+            renderRooms();
         } catch (error) {
             console.error('Error loading rooms:', error);
             roomList.innerHTML = '<div class="col-span-full text-center py-12 bg-red-50 rounded-xl border border-red-100"><p class="text-red-500">Failed to load rooms. Make sure backend is running.</p></div>';
         }
     };
     
+    // Attach event listeners to filter inputs
+    ['filter-location', 'filter-type', 'filter-max-price'].forEach(id => {
+        document.getElementById(id)?.addEventListener('input', renderRooms);
+    });
+    ['filter-pets', 'filter-laundry'].forEach(id => {
+        document.getElementById(id)?.addEventListener('change', renderRooms);
+    });
+
     loadRooms();
+}
+
+function renderRooms() {
+    const roomList = document.getElementById('room-list');
+    if (!roomList) return;
+    
+    // Get filter values
+    const locationQ = (document.getElementById('filter-location')?.value || '').toLowerCase();
+    const typeQ = document.getElementById('filter-type')?.value || '';
+    const maxPrice = parseFloat(document.getElementById('filter-max-price')?.value) || Infinity;
+    const petsReq = document.getElementById('filter-pets')?.checked || false;
+    const laundryReq = document.getElementById('filter-laundry')?.checked || false;
+    
+    const filtered = allAvailableRooms.filter(r => {
+        const loc = (r.location || '').toLowerCase();
+        if (locationQ && !loc.includes(locationQ)) return false;
+        if (typeQ && r.properties !== typeQ) return false;
+        const price = r.price || 0;
+        if (price > maxPrice) return false;
+        if (petsReq && !r.petFriendly) return false;
+        if (laundryReq && !r.inUnitLaundry) return false;
+        return true;
+    });
+
+    if (filtered.length === 0) {
+        roomList.innerHTML = '<div class="col-span-full text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100"><p class="text-gray-500 text-lg">No rooms match your search.</p></div>';
+        return;
+    }
+    
+    roomList.innerHTML = filtered.map(r => {
+        const defaultImages = ['home1.jpg', 'home2.jpg', 'image3.jpg'];
+        const displayImage = defaultImages[r.id % defaultImages.length] || defaultImages[0];
+        
+        const price = r.price || 0;
+        const utils = r.utilityCost || 0;
+        const total = price + utils;
+        
+        return `
+        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col">
+            <img src="${displayImage}" alt="Room" class="w-full h-48 object-cover">
+            <div class="p-6 flex-grow flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-xl font-bold text-gray-900 capitalize">${r.properties} Room</h3>
+                    <div class="text-right">
+                        <div class="text-lg font-extrabold text-brand-600">$${total}</div>
+                        <div class="text-xs text-gray-500">/month</div>
+                    </div>
+                </div>
+                <div class="text-xs text-gray-500 mb-3 flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    ${r.location || 'Location not specified'}
+                </div>
+                
+                <!-- Amenities -->
+                <div class="flex gap-2 mb-3">
+                    ${r.petFriendly ? '<span class="px-2 py-1 bg-brand-50 text-brand-700 rounded text-xs font-medium border border-brand-100">Pet Friendly</span>' : ''}
+                    ${r.inUnitLaundry ? '<span class="px-2 py-1 bg-brand-50 text-brand-700 rounded text-xs font-medium border border-brand-100">In-Unit Laundry</span>' : ''}
+                </div>
+
+                <p class="text-gray-600 mb-4 flex-grow text-sm line-clamp-3">${r.description || 'No description provided.'}</p>
+                
+                <!-- Total Cost Calculator -->
+                <div class="bg-slate-50 p-3 rounded-lg mb-4 text-xs">
+                    <div class="flex justify-between mb-1"><span class="text-gray-600">Base Rent</span><span class="font-medium">$${price}</span></div>
+                    <div class="flex justify-between mb-1"><span class="text-gray-600">Estimated Utilities</span><span class="font-medium">$${utils}</span></div>
+                    <div class="flex justify-between mt-2 pt-2 border-t border-gray-200 font-bold"><span class="text-gray-900">Total Monthly Cost</span><span class="text-brand-600">$${total}</span></div>
+                </div>
+                
+                <!-- Book a Tour -->
+                <div class="mt-auto">
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Book a Tour Date</label>
+                    <input type="datetime-local" id="tour-${r.id}" class="w-full mb-3 px-3 py-2 border border-gray-300 rounded text-sm focus:ring-brand-500 focus:border-brand-500">
+                    <button class="w-full bg-brand-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-brand-700 transition-colors shadow-sm" onclick="requestRent(${r.id})">Book Tour & Apply</button>
+                </div>
+            </div>
+        </div>
+        `;
+    }).join('');
 }
 
 window.requestRent = async (roomId) => {
     const user = getCurrentUser();
     if (!user) {
-        showNotification('Please login to request a room', 'error');
-        setTimeout(() => window.location.href = 'login.html', 1500);
+        alert('Please login to request a room');
+        window.location.href = 'login.html';
         return;
     }
     
-    const descInput = document.getElementById(`desc-${roomId}`);
-    const description = descInput ? descInput.value : 'Interested in renting this room.';
+    const tourDate = document.getElementById(`tour-${roomId}`).value;
+    if (!tourDate) {
+        alert('Please select a tour date');
+        return;
+    }
     
     try {
-        await api.createRequest(roomId, user.userId || user.id, description); // Backend is userId
-        showNotification('Room request submitted successfully!');
-        if(descInput) descInput.value = '';
+        await api.createRequest(roomId, user.userId || user.id, tourDate);
+        alert('Tour requested successfully! Check your dashboard for status updates.');
     } catch (error) {
-        console.error(error);
-        showNotification('Failed to submit request', 'error');
+        console.error('Error requesting room:', error);
+        alert('Failed to request room');
     }
 };
 
@@ -424,10 +490,15 @@ async function loadAdminRooms() {
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm font-medium text-gray-900 capitalize">${r.properties}</div>
-                    <div class="text-xs text-gray-500">ID: ${r.id}</div>
+                    <div class="text-xs text-gray-500">${r.location || 'No location'}</div>
+                    <div class="text-xs mt-1 space-x-1">
+                        ${r.petFriendly ? '<span class="px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded text-[10px]">Pets</span>' : ''}
+                        ${r.inUnitLaundry ? '<span class="px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded text-[10px]">Laundry</span>' : ''}
+                    </div>
                 </td>
-                <td class="px-6 py-4">
-                    <div class="text-sm text-gray-600 line-clamp-2 max-w-xs">${r.description || 'No description'}</div>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">$${r.price || 0}/mo</div>
+                    <div class="text-xs text-gray-500">+$${r.utilityCost || 0} utils</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     ${statusHtml}
@@ -452,6 +523,11 @@ window.openAdminRoomModal = (roomId = null) => {
             document.getElementById('admin-room-id').value = room.id;
             document.getElementById('admin-room-properties').value = room.properties;
             document.getElementById('admin-room-description').value = room.description || '';
+            document.getElementById('admin-room-location').value = room.location || '';
+            document.getElementById('admin-room-price').value = room.price || '';
+            document.getElementById('admin-room-utilities').value = room.utilityCost || '';
+            document.getElementById('admin-room-pets').checked = room.petFriendly || false;
+            document.getElementById('admin-room-laundry').checked = room.inUnitLaundry || false;
         }
     } else {
         document.getElementById('room-modal-title').textContent = 'Add Room';
@@ -468,7 +544,12 @@ document.getElementById('admin-room-form')?.addEventListener('submit', async (e)
     const roomId = document.getElementById('admin-room-id').value;
     const roomData = {
         properties: document.getElementById('admin-room-properties').value,
-        description: document.getElementById('admin-room-description').value
+        description: document.getElementById('admin-room-description').value,
+        location: document.getElementById('admin-room-location').value,
+        price: document.getElementById('admin-room-price').value ? parseFloat(document.getElementById('admin-room-price').value) : null,
+        utilityCost: document.getElementById('admin-room-utilities').value ? parseFloat(document.getElementById('admin-room-utilities').value) : null,
+        petFriendly: document.getElementById('admin-room-pets').checked,
+        inUnitLaundry: document.getElementById('admin-room-laundry').checked
     };
     try {
         if (roomId) {

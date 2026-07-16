@@ -93,14 +93,14 @@ const api = {
         const response = await fetch(`${BASE_URL}/room-requests`);
         return response.json();
     },
-    createRequest: async (roomId, tenantId, description) => {
+    createRequest: async (roomId, tenantId, tourDate) => {
         const response = await fetch(`${BASE_URL}/room-requests`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 room: { id: roomId },
                 tenant: { id: tenantId },
-                description: description,
+                tourDate: tourDate,
                 status: 'PENDING'
             })
         });
